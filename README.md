@@ -2,7 +2,7 @@
 Login with JWToken &amp; material-ui, formik, yup
 
 # Demo Version
-https://antishev-urlshortener-app.herokuapp.com/
+https://murmuring-brushlands-42221.herokuapp.com/
 
 ## Technologies in use
 the MERN stack (MongoDB(cloud version), express.js, react.js, node.js)
