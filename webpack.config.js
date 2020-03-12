@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); 
 const path = require('path');
 
 module.exports = {
@@ -17,27 +18,27 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(png|jpg|gif)$/i,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                        },
-                    },
-                ],
+                test: /\.(png|jpg|jpeg|svg|gif)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                    }
+                }]
             }
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css'],
-        alias: {
-            '@': path.resolve(__dirname, 'src/'),
-        }
+        extensions: ['.js', '.jsx', '.css']
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: './src/index.html'
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new CopyWebpackPlugin([
+            { from: './src/images', to: `./src/images` },
+          ])
+    ],
     devServer: {
         historyApiFallback: true
     },
